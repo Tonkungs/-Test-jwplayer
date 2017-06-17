@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JW Player</title>
+    <script src="jwplayer.js"></script>
+    <script>jwplayer.key = "AsGTGjIrZZ+cbzfjRocfX7PJRpdyeNreCLr/aQ==";</script>
+</head>
+<body>
+<div id="player"></div>
+<button onclick="alertCookie()">Show cookies</button>
+<button onclick="test()">Set cookies</button>
+<script type="text/javascript">
+function test() {
+  document.cookie = "name=oeschger";
+document.cookie = "favorite_food=tripe";
+}
+
+function alertCookie() {
+  alert(document.cookie);
+}
+var player = jwplayer("player");
+
+player.setup({
+    file: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
+    image: '//content.jwplatform.com/thumbs/1g8jjku3-720.jpg',
+    skin: {
+  	name: 'custom',
+		url: 'style.css'
+  }
+});
+
+player.on('time', function(e) {
+	// console.log($cookie.setItem('1',1))
+	console.log(e.position)
+	document.cookie = "name=oeschger";
+document.cookie = "favorite_food=tripe";
+    console.log(document.cookie)
+    // $cookie.setItem('resumevideodata', Math.floor(e.position) + ':' + player.getDuration());
+});
+
+// player.on('ready', function() {    
+//     var cookieData = $cookie.getItem('resumevideodata');
+//     if(cookieData) {
+//         var resumeAt = cookieData.split(':')[0],
+//             videoDur = cookieData.split(':')[1];
+//         if(parseInt(resumeAt) < parseInt(videoDur)) {
+//             player.seek(resumeAt);          
+//             logMessage('Resuming at ' + resumeAt); //for demo purposes            
+//         }
+//         else if(cookieData && !(parseInt(resumeAt) < parseInt(videoDur))) {
+//             logMessage('Video ended last time! Will skip resume behavior'); //for demo purposes            
+//         }        
+//     }
+//     else {
+//         logMessage('No video resume cookie detected. Refresh page.');
+//     }
+// });
+</script>
+
+</body>
+</html>
